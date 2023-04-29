@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mark Sheet</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mark Sheet</h1>
+
+  <div>
+    <label for="name">Name: </label>
+    <input type="text" id="name">
+  </div>
+
+  <div>
+    <label for="subject1">Subject 1: </label>
+    <input type="number" id="subject1" min="0" max="100">
+  </div>
+
+  <div>
+    <label for="subject2">Subject 2: </label>
+    <input type="number" id="subject2" min="0" max="100">
+  </div>
+
+  <div>
+    <label for="subject3">Subject 3: </label>
+    <input type="number" id="subject3" min="0" max="75">
+  </div>
+
+  <div>
+    <label for="subject4">Subject 4: </label>
+    <input type="number" id="subject4" min="0" max="75">
+  </div>
+
+  <div>
+    <label for="subject5">Subject 5: </label>
+    <input type="number" id="subject5" min="0" max="50">
+  </div>
+
+  <div>
+    <label for="subject6">Subject 6: </label>
+    <input type="number" id="subject6" min="0" max="50">
+  </div>
+
+  <button onclick="generateMarkSheet()">Generate Mark Sheet</button>
+
+  <table id="markSheetTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Subject 1</th>
+        <th>Subject 2</th>
+        <th>Subject 3</th>
+        <th>Subject 4</th>
+        <th>Subject 5</th>
+        <th>Subject 6</th>
+        <th>Total</th>
+        <th>Average</th>
+      </tr>
+    </thead>
+    <tbody id="markSheetBody">
+      
+    </tbody>
+  </table>
+
+  <script>
+    function generateMarkSheet() {
+      const name = document.getElementById('name').value;
+      const subject1 = parseInt(document.getElementById('subject1').value);
+      const subject2 = parseInt(document.getElementById('subject2').value);
+      const subject3 = parseInt(document.getElementById('subject3').value);
+      const subject4 = parseInt(document.getElementById('subject4').value);
+      const subject5 = parseInt(document.getElementById('subject5').value);
+      const subject6 = parseInt(document.getElementById('subject6').value);
+      
+      const total = subject1 + subject2 + subject3 + subject4 + subject5 + subject6;
+      const average = total / 6;
+
+      const markSheetBody = document.getElementById('markSheetBody');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${subject1}</td>
+        <td>${subject2}</td>
+        <td>${subject3}</td>
+        <td>${subject4}</td>
+        <td>${subject5}</td>
+        <td>${subject6}</td>
+        <td>${total}</td>
+        <td>${average.toFixed(2)}</td>
+      `;
+      markSheetBody.appendChild(newRow);
+    }
+  </script>
+</body>
+</html>
